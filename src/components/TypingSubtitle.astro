@@ -1,0 +1,66 @@
+---
+export interface Props {
+  sentences: string[];
+  speed?: number; // typing speed in ms per character
+  eraseSpeed?: number; // erasing speed in ms per character
+  delay?: number; // delay between sentences in ms
+}
+
+const { sentences, speed = 50, eraseSpeed = 30, delay = 1500 } = Astro.props;
+---
+
+<p class="text-2xl mt-4" data-sentences={JSON.stringify(sentences)} data-speed={speed} data-erasespeed={eraseSpeed} data-delay={delay}>
+  <span id="typed-text"></span><span id="typing-cursor" class="typing-cursor">_</span>
+</p>
+
+<style>
+  @keyframes blink-cursor {
+    from, to { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  .typing-cursor {
+    animation: blink-cursor .75s step-end infinite;
+    font-size: 1.2em; /* Make the underscore slightly larger/wider */
+    vertical-align: middle; /* Adjust vertical alignment if needed */
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const containerElement = document.querySelector('#typed-text').parentElement; // The <p> tag
+    const typedTextElement = document.getElementById('typed-text');
+    const cursorElement = document.getElementById('typing-cursor');
+
+    if (typedTextElement && cursorElement && containerElement) {
+      const sentences = JSON.parse(containerElement.dataset.sentences);
+      const speed = parseInt(containerElement.dataset.speed || '50');
+      const eraseSpeed = parseInt(containerElement.dataset.erasespeed || '30');
+      const delay = parseInt(containerElement.dataset.delay || '1500');
+      let sentenceIndex = 0;
+      let charIndex = 0;
+
+      function type() {
+        if (charIndex < sentences[sentenceIndex].length) {
+          typedTextElement.textContent += sentences[sentenceIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(type, speed);
+        } else {
+          setTimeout(erase, delay);
+        }
+      }
+
+      function erase() {
+        if (charIndex > 0) {
+          typedTextElement.textContent = sentences[sentenceIndex].substring(0, charIndex - 1);
+          charIndex--;
+          setTimeout(erase, eraseSpeed);
+        } else {
+          sentenceIndex = (sentenceIndex + 1) % sentences.length;
+          setTimeout(type, speed);
+        }
+      }
+
+      type();
+    }
+  });
+</script>

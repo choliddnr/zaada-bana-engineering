@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout title="Contact Us | PT. Zaada Bana Engineering">
+  <main class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold text-primary-dark my-4">Contact Us</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl font-bold">Get in Touch</h2>
+        <p class="text-lg mt-2">Perum Piranha Residence A10<br>Lowokwaru, Malang</p>
+        <p class="text-lg mt-2">+62813-3006-5335</p>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold">Send us a Message</h2>
+        <form class="mt-4">
+          <div class="grid grid-cols-1 gap-4">
+            <input type="text" placeholder="Your Name" class="p-2 rounded-lg border">
+            <input type="email" placeholder="Your Email" class="p-2 rounded-lg border">
+            <textarea placeholder="Your Message" rows="5" class="p-2 rounded-lg border"></textarea>
+            <button type="submit" class="bg-primary text-black font-bold py-2 px-4 rounded-full hover:bg-primary-dark">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</Layout>

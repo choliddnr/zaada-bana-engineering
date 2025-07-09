@@ -1,0 +1,296 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ReviewsCarousel from "../components/ReviewsCarousel.astro";
+import TypingSubtitle from "../components/TypingSubtitle.astro";
+import AnimatedBackground from "../components/AnimatedBackground.astro";
+import WhyUsCarousel from "../components/WhyUsCarousel.astro";
+
+import { getCollection } from "astro:content";
+
+const allBlogPosts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout title="PT. Zaada Bana Engineering">
+  <main class="text-center">
+    <div
+      class="hero relative bg-no-repeat bg-center text-white py-32"
+      style="background-image: url('/hero.webp'); background-size: cover; background-position: center;"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
+      >
+      </div>
+      <div class="relative z-10 text-center px-4 py-20">
+        <h1 class="text-6xl font-bold leading-tight">
+          Your First Choice Electrical Partner
+        </h1>
+        <TypingSubtitle
+          sentences={[
+            "Delivering Excellence in Electrical Engineering & Construction Since 2017",
+            "Your First Choice Partner and Solution",
+            "Professional, Simple, and Elegant Solutions",
+          ]}
+        />
+        <a
+          href="/contact"
+          class="inline-block bg-primary text-black font-bold py-4 px-9 rounded-full mt-8 hover:bg-primary-dark hover:text-white transition duration-300"
+          aria-label="Start collaboration with PT. Zaada Bana Engineering"
+          >Start Collaboration</a
+        >
+      </div>
+    </div>
+
+    <section
+      id="services"
+      class="relative py-20 px-8 bg-transparent pt-0 -mt-20 z-20"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div
+          class="p-8 bg-white rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-12 w-12 text-primary-dark mb-4"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
+            ></path>
+          </svg>
+
+          <h3 class="text-3xl text-primary-dark font-bold mb-4">
+            Electrical Consulting
+          </h3>
+          <p class="text-lg text-center">
+            Expert guidance for all your electrical engineering needs, from
+            feasibility studies to design.
+          </p>
+        </div>
+        <div
+          class="p-8 bg-white rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-12 w-12 text-primary-dark mb-4"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"
+            ></path>
+          </svg>
+
+          <h3 class="text-3xl text-primary-dark font-bold mb-4">
+            Project Execution
+          </h3>
+          <p class="text-lg text-center">
+            Seamless execution of electrical construction projects, ensuring
+            quality and efficiency.
+          </p>
+        </div>
+        <div
+          class="p-8 bg-white rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12 text-primary-dark mb-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+          >
+          <h3 class="text-3xl text-primary-dark font-bold mb-4">
+            Renewable Energy
+          </h3>
+          <p class="text-lg text-center">
+            Innovative solutions for solar lighting and other sustainable energy
+            projects.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="pb-20 pt-2 px-8 max-w-5xl mx-auto">
+      <h2 class="text-5xl font-bold text-primary-dark mb-8">About Us</h2>
+      <p class="text-xl leading-relaxed">
+        PT. Zaada Bana Engineering merupakan perusahaan yang bergerak di bidang
+        Engineering Construction dan Engineering Training & Consulting.
+        Perusahaan kami memiliki komitmen untuk menjadi First Choice Partner di
+        bidang konstruksi dan konsultan. Sejak tahun 2017, PT. Zaada Bana
+        Engineering terus mengembangkan usaha di bidang konstruksi yang memiliki
+        ruang lingkup dan cakupan di bidang pelayanan meliputi perencanaan,
+        pembangunan hingga service pemeliharaan.
+      </p>
+    </section>
+
+    <WhyUsCarousel />
+
+    <section id="latest-blog-posts" class="py-20 px-8">
+      <h2 class="text-5xl font-bold text-primary-dark mb-12">
+        Latest Blog Posts
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {
+          allBlogPosts.map((post) => (
+            <a
+              href={`/blog/${post.slug}`}
+              class="block bg-white rounded-lg shadow-md text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              aria-label={`Read more about ${post.data.title}`}
+            >
+              {post.data.heroImage && (
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  class="w-full h-48 object-cover rounded-t-lg"
+                />
+              )}
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-primary-dark mb-2">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  {post.data.pubDate.toLocaleDateString()}
+                </p>
+                <p class="mt-4 text-gray-700">{post.data.description}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <a
+        href="/blog"
+        class="inline-block bg-primary text-black font-bold py-2 px-4 mt-12 hover:bg-primary-dark hover:text-white rounded-full"
+        aria-label="View all blog posts">View All Blog Posts</a
+      >
+    </section>
+
+    <ReviewsCarousel />
+
+    <section
+      id="clients"
+      class="py-20 px-8 text-white"
+      style="background-image: url('/bg2.webp'); background-size: cover;"
+    >
+      <h2 class="text-5xl font-bold text-white mb-12">Our Valued Clients</h2>
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-center max-w-6xl mx-auto"
+      >
+        <img
+          src="/client-logo/1600w-VWMkc4ioVFE.webp"
+          alt="Alam Sutera"
+          class="h-40 rounded-md shadow-md w-auto mx-auto object-contain"
+        />
+        <img
+          src="/client-logo/746674_19904371_3623917_a90eaa26_image.webp"
+          alt="Ciputra"
+          class="h-40 rounded-md shadow-md w-auto mx-auto object-contain"
+        />
+        <img
+          src="/client-logo/construction-company-logo-template.webp"
+          alt="Citraland Puri Serang"
+          class="h-40 rounded-md shadow-md w-auto mx-auto object-contain"
+        />
+        <img
+          src="/client-logo/images (1).webp"
+          alt="Citraraya Tangerang"
+          class="h-40 rounded-md shadow-md w-auto mx-auto object-contain"
+        />
+        <img
+          src="/client-logo/images.webp"
+          alt="IPH Schools"
+          class="h-40 rounded-md shadow-md w-auto mx-auto object-contain"
+        />
+        <img
+          src="/client-logo/pngtree-electric-logo-initials-o-image_206288.webp"
+          alt="Intiland"
+          class="h-40 rounded-md shadow-md w-auto mx-auto object-contain"
+        />
+      </div>
+    </section>
+
+    <section id="projects" class="py-16 mx-auto px-8 bg-light">
+      <div class="container mx-auto">
+        <h2 class="text-5xl font-bold text-primary-dark">Project Portfolio</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div class="relative group rounded-lg shadow-md overflow-hidden">
+            <img
+              src="/pexels-photo-268533.webp"
+              alt="Project 1"
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+              <div class="text-white text-center p-4">
+                <h3 class="text-xl font-bold">Citraland Puri Project</h3>
+                <p class="text-sm mt-2">
+                  Comprehensive electrical installation and infrastructure
+                  development.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="relative group rounded-lg shadow-md overflow-hidden">
+            <img
+              src="/images.webp"
+              alt="Project 2"
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+              <div class="text-white text-center p-4">
+                <h3 class="text-xl font-bold">Electrical Infrastructure</h3>
+                <p class="text-sm mt-2">
+                  Development of robust electrical infrastructure for new urban
+                  areas.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="relative group rounded-lg shadow-md overflow-hidden">
+            <img
+              src="/images2.webp"
+              alt="Project 3"
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+              <div class="text-white text-center p-4">
+                <h3 class="text-xl font-bold">Residential Lighting</h3>
+                <p class="text-sm mt-2">
+                  Installation of modern and efficient lighting solutions for
+                  complexes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          href="/projects"
+          class="inline-block bg-primary text-black font-bold py-2 px-4 rounded-full mt-8 hover:bg-primary-dark hover:text-white"
+          aria-label="View all projects">View All Projects</a
+        >
+      </div>
+    </section>
+  </main>
+</Layout>

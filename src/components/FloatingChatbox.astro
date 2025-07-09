@@ -1,0 +1,241 @@
+---
+export interface Props {
+  chatbotApiUrl: string;
+}
+
+const { chatbotApiUrl } = Astro.props;
+---
+
+<div
+  id="floating-chatbox"
+  class="fixed bottom-4 right-4 z-50"
+  data-api-url={chatbotApiUrl}
+>
+  <button
+    id="chat-toggle-button"
+    class="bg-primary-dark text-white p-3 rounded-full shadow-lg hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+    aria-label="Toggle chat window"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-6 h-6"
+      aria-hidden="true"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H15.75m2.25 2.25h1.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H1.5A2.25 2.25 0 0 0-0.75 6.75v4.5a2.25 2.25 0 0 0 2.25 2.25h1.5v4.5l4.75-4.5H18Z"
+      ></path>
+    </svg>
+  </button>
+
+  <div
+    id="chat-window"
+    class="hidden bg-white rounded-lg shadow-2xl w-96 h-[50vh] flex flex-col mt-2"
+  >
+    <div
+      class="bg-primary-dark text-white p-3 rounded-t-lg flex justify-between items-center"
+    >
+      <h3 class="font-bold">Chat with Us</h3>
+      <button
+        id="chat-close-button"
+        class="text-white hover:text-gray-200 focus:outline-none"
+        aria-label="Close chat window"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="flex-grow p-4 overflow-y-auto">
+      <!-- Chat messages will go here -->
+      <p class="text-gray-600 text-sm">Hello! How can we help you today?</p>
+    </div>
+    <div class="p-3 border-t border-gray-200">
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="Type your message..."
+        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+      />
+      <button
+        id="chat-send-button"
+        class="mt-2 w-full bg-primary-dark text-white p-2 rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+        >Send</button
+      >
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatToggleButton = document.getElementById("chat-toggle-button");
+    const chatCloseButton = document.getElementById("chat-close-button");
+    const chatWindow = document.getElementById("chat-window");
+    const chatInput = document.getElementById("chat-input");
+    const chatSendButton = document.getElementById("chat-send-button");
+    const chatMessagesContainer = chatWindow!.querySelector("div.flex-grow");
+    const floatingChatbox = document.getElementById("floating-chatbox");
+    const chatbotApiUrl = floatingChatbox!.dataset.apiUrl;
+
+    let sessionId = sessionStorage.getItem("chatbotSessionId");
+    let sessionExpiration = sessionStorage.getItem("chatbotSessionExpiration");
+    const now = new Date().getTime();
+    const oneDay = 24 * 60 * 60 * 1000; // 1 day in milliseconds
+
+    if (!sessionId || !sessionExpiration || now > parseInt(sessionExpiration)) {
+      // Generate a new session ID if none exists or it has expired
+      sessionId = crypto.randomUUID();
+      sessionExpiration = (now + oneDay).toString();
+      sessionStorage.setItem("chatbotSessionId", sessionId);
+      sessionStorage.setItem("chatbotSessionExpiration", sessionExpiration);
+    }
+
+    if (chatToggleButton && chatWindow) {
+      chatToggleButton.addEventListener("click", () => {
+        chatWindow.classList.toggle("hidden");
+      });
+    }
+
+    if (chatCloseButton && chatWindow) {
+      chatCloseButton.addEventListener("click", () => {
+        chatWindow.classList.add("hidden");
+      });
+    }
+
+    const sendMessage = async () => {
+      const userMessage = chatInput!.value.trim();
+      if (userMessage) {
+        // Display user message
+        const userMessageWrapper = document.createElement("div");
+        userMessageWrapper.classList.add("flex", "justify-end", "mb-2");
+        const userMessageBubble = document.createElement("div");
+        userMessageBubble.classList.add(
+          "bg-blue-200",
+          "text-blue-900",
+          "rounded-lg",
+          "p-2",
+          "max-w-[80%]",
+          "mt-2"
+        );
+        userMessageBubble.textContent = userMessage;
+        userMessageWrapper.appendChild(userMessageBubble);
+        chatMessagesContainer!.appendChild(userMessageWrapper);
+
+        chatInput!.value = ""; // Clear input
+        chatMessagesContainer!.scrollTop = chatMessagesContainer!.scrollHeight; // Scroll to bottom
+
+        try {
+          const response = await fetch(chatbotApiUrl as string, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Session-ID": sessionId,
+            },
+            body: JSON.stringify({ query: userMessage }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          let botResponse =
+            data[0]?.output || "Sorry, I didn't get a response.";
+
+          // Format bot response (simple markdown to HTML)
+          botResponse = botResponse.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+          );
+
+          const lines = botResponse.split("\n");
+          let htmlParts = [];
+          let inList = false;
+
+          lines.forEach((line) => {
+            if (line.trim().startsWith("*   ")) {
+              if (!inList) {
+                htmlParts.push("<ul>");
+                inList = true;
+              }
+              const listItemContent = line.trim().substring(4);
+              htmlParts.push(`<li>${listItemContent}</li>`);
+            } else {
+              if (inList) {
+                htmlParts.push("</ul>");
+                inList = false;
+              }
+              if (line.trim() !== "") {
+                htmlParts.push(`<p>${line}</p>`);
+              }
+            }
+          });
+
+          if (inList) {
+            htmlParts.push("</ul>");
+          }
+
+          const finalHtml = htmlParts.join("");
+
+          // Display bot response
+          const botMessageWrapper = document.createElement("div");
+          botMessageWrapper.classList.add("flex", "justify-start", "mb-2");
+          const botMessageBubble = document.createElement("div");
+          botMessageBubble.classList.add(
+            "bg-gray-300",
+            "text-gray-900",
+            "rounded-lg",
+            "p-2",
+            "max-w-[80%]"
+          );
+          botMessageBubble.innerHTML = finalHtml;
+          botMessageWrapper.appendChild(botMessageBubble);
+          chatMessagesContainer!.appendChild(botMessageBubble);
+          chatMessagesContainer!.scrollTop =
+            chatMessagesContainer!.scrollHeight; // Scroll to bottom
+        } catch (error) {
+          console.error("Error sending message:", error);
+          const errorMessageElement = document.createElement("p");
+          errorMessageElement.classList.add(
+            "text-left",
+            "text-red-500",
+            "mb-2"
+          );
+          errorMessageElement.textContent =
+            "Error: Could not connect to the chatbot.";
+          chatMessagesContainer!.appendChild(errorMessageElement);
+          chatMessagesContainer!.scrollTop =
+            chatMessagesContainer!.scrollHeight; // Scroll to bottom
+        }
+      }
+    };
+
+    if (chatSendButton) {
+      chatSendButton.addEventListener("click", sendMessage);
+    }
+
+    if (chatInput) {
+      chatInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          sendMessage();
+        }
+      });
+    }
+  });
+</script>

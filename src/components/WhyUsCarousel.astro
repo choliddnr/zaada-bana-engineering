@@ -1,0 +1,173 @@
+---
+import "@splidejs/splide/css";
+import AnimatedBackground from "./AnimatedBackground.astro";
+---
+
+<section id="why-us" class="py-20 px-8 relative overflow-hidden">
+  <AnimatedBackground />
+  <h2 class="text-5xl font-bold text-white mb-12">Why Choose Us</h2>
+  <div
+    id="why-us-carousel"
+    class="splide"
+    role="group"
+    aria-label="A carousel of reasons to choose us"
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li
+          class="splide__slide p-6 mx-4 flex flex-col items-stretch justify-center"
+        >
+          <div
+            class="p-8 bg-gray-100 rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-12 w-12 text-primary-dark mb-4"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+              ></path>
+            </svg>
+
+            <h3 class="text-3xl font-bold mb-4 text-primary-dark">
+              Quality Products
+            </h3>
+            <p class="text-lg text-center">
+              We use only the highest quality materials and cutting-edge
+              technology.
+            </p>
+          </div>
+        </li>
+        <li
+          class="splide__slide p-6 mx-4 flex flex-col items-stretch justify-center"
+        >
+          <div
+            class="p-8 bg-gray-100 rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-12 w-12 text-primary-dark mb-4"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+              ></path>
+            </svg>
+
+            <h3 class="text-3xl font-bold mb-4 text-primary-dark">
+              Professional Team
+            </h3>
+            <p class="text-lg text-center">
+              Our team consists of highly skilled and experienced professionals.
+            </p>
+          </div>
+        </li>
+        <li
+          class="splide__slide p-6 mx-4 flex flex-col items-stretch justify-center"
+        >
+          <div
+            class="p-8 bg-gray-100 rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-12 w-12 text-primary-dark mb-4"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              ></path>
+            </svg>
+
+            <h3 class="text-3xl font-bold mb-4 text-primary-dark">
+              Competitive Price
+            </h3>
+            <p class="text-lg text-center">
+              We offer competitive pricing without compromising on quality.
+            </p>
+          </div>
+        </li>
+        <li
+          class="splide__slide p-6 mx-4 flex flex-col items-stretch justify-center"
+        >
+          <div
+            class="p-8 bg-gray-100 rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-12 w-12 text-primary-dark mb-4"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+              ></path>
+            </svg>
+
+            <h3 class="text-3xl font-bold mb-4 text-primary-dark">
+              5-Year Warranty
+            </h3>
+            <p class="text-lg text-center">
+              Enjoy peace of mind with our comprehensive 5-year warranty on all
+              projects.
+            </p>
+          </div>
+        </li>
+        <li
+          class="splide__slide p-6 mx-4 flex flex-col items-stretch justify-center"
+        >
+          <div
+            class="p-8 bg-gray-100 rounded-lg shadow-lg flex flex-col items-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-12 w-12 text-primary-dark mb-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193l-3.72.23c-1.13.07-2.07-.87-2.07-2v-4.286c0-.97.616-1.813 1.5-2.097m6.02-6.053a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+              ></path></svg
+            >
+            <h3 class="text-3xl font-bold mb-4 text-primary-dark">
+              Free Consultation
+            </h3>
+            <p class="text-lg text-center">
+              We provide free consultation services for network planning and
+              design.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script type="module" src="/src/scripts/initSplide.js" client:load></script>

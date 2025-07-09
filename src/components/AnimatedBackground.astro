@@ -1,0 +1,158 @@
+<div class="animated-background-container">
+  <div class="animated-bubble bubble-1"></div>
+  <div class="animated-bubble bubble-2"></div>
+  <div class="animated-bubble bubble-3"></div>
+  <div class="animated-bubble bubble-4"></div>
+  <div class="animated-bubble bubble-5"></div>
+  <div class="animated-bubble bubble-6"></div>
+  <div class="animated-bubble bubble-7"></div>
+  <div class="animated-bubble bubble-8"></div>
+  <div class="animated-bubble bubble-9"></div>
+  <div class="animated-bubble bubble-10"></div>
+  <div class="animated-bubble bubble-11"></div>
+  <div class="animated-bubble bubble-12"></div>
+  <div class="animated-bubble bubble-13"></div>
+  <div class="animated-bubble bubble-14"></div>
+  <div class="animated-bubble bubble-15"></div>
+</div>
+
+<style>
+  .animated-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ddbd30; /* primary-dark background */
+    z-index: -1; /* Behind content */
+  }
+
+  .animated-bubble {
+    position: absolute;
+    background: rgba(255, 251, 219, 0.5); /* Semi-transparent primary yellow */
+    border-radius: 50%;
+    opacity: 0;
+    animation: bubble-float linear infinite;
+  }
+
+  .bubble-1 {
+    width: 20px;
+    height: 20px;
+    left: 10%;
+    animation-duration: 15s;
+    animation-delay: 0s;
+  }
+  .bubble-2 {
+    width: 30px;
+    height: 30px;
+    left: 20%;
+    animation-duration: 18s;
+    animation-delay: 2s;
+  }
+  .bubble-3 {
+    width: 25px;
+    height: 25px;
+    left: 30%;
+    animation-duration: 16s;
+    animation-delay: 4s;
+  }
+  .bubble-4 {
+    width: 40px;
+    height: 40px;
+    left: 40%;
+    animation-duration: 20s;
+    animation-delay: 1s;
+  }
+  .bubble-5 {
+    width: 35px;
+    height: 35px;
+    left: 50%;
+    animation-duration: 17s;
+    animation-delay: 3s;
+  }
+  .bubble-6 {
+    width: 22px;
+    height: 22px;
+    left: 60%;
+    animation-duration: 19s;
+    animation-delay: 0.5s;
+  }
+  .bubble-7 {
+    width: 28px;
+    height: 28px;
+    left: 70%;
+    animation-duration: 16s;
+    animation-delay: 2.5s;
+  }
+  .bubble-8 {
+    width: 33px;
+    height: 33px;
+    left: 80%;
+    animation-duration: 21s;
+    animation-delay: 4.5s;
+  }
+  .bubble-9 {
+    width: 27px;
+    height: 27px;
+    left: 90%;
+    animation-duration: 18s;
+    animation-delay: 1.5s;
+  }
+  .bubble-10 {
+    width: 38px;
+    height: 38px;
+    left: 5%;
+    animation-duration: 22s;
+    animation-delay: 3.5s;
+  }
+  .bubble-11 {
+    width: 23px;
+    height: 23px;
+    left: 15%;
+    animation-duration: 17s;
+    animation-delay: 0.8s;
+  }
+  .bubble-12 {
+    width: 32px;
+    height: 32px;
+    left: 25%;
+    animation-duration: 20s;
+    animation-delay: 2.8s;
+  }
+  .bubble-13 {
+    width: 29px;
+    height: 29px;
+    left: 35%;
+    animation-duration: 19s;
+    animation-delay: 4.8s;
+  }
+  .bubble-14 {
+    width: 42px;
+    height: 42px;
+    left: 45%;
+    animation-duration: 23s;
+    animation-delay: 1.8s;
+  }
+  .bubble-15 {
+    width: 37px;
+    height: 37px;
+    left: 55%;
+    animation-duration: 18s;
+    animation-delay: 3.8s;
+  }
+
+  @keyframes bubble-float {
+    0% {
+      transform: translateY(100vh) translateX(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100px) translateX(50px);
+      opacity: 0;
+    }
+  }
+</style>

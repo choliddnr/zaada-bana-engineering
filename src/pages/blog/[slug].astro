@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { CollectionEntry, getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title + ' | PT. Zaada Bana Engineering'}>
+  <main>
+    <div
+      class="hero relative bg-no-repeat bg-center text-white py-32 z-0"
+      style={`background-image: url('${entry.data.heroImage || '/images3.jpeg'}'); background-size: cover; background-position: center;`}
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"
+      >
+      </div>
+      <div class="relative z-10 text-center px-4 py-20">
+        <h1 class="text-6xl font-bold leading-tight">{entry.data.title}</h1>
+        <p class="text-xl mt-4 max-w-3xl mx-auto">
+          Published: {entry.data.pubDate.toLocaleDateString()}
+        </p>
+      </div>
+    </div>
+
+    <article class="container mx-auto p-8 max-w-4xl prose prose-lg mt-12">
+      <Content />
+    </article>
+
+    <div class="container mx-auto p-8 max-w-4xl text-left">
+      <a href="/blog" class="inline-block bg-primary text-black font-bold py-2 px-4 rounded-full mt-8 hover:bg-primary-dark">
+        &larr; Back to Blog
+      </a>
+    </div>
+  </main>
+</Layout>
