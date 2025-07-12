@@ -1,5 +1,4 @@
 ---
-import "@splidejs/splide/css";
 import AnimatedBackground from "./AnimatedBackground.astro";
 ---
 
@@ -169,5 +168,20 @@ import AnimatedBackground from "./AnimatedBackground.astro";
     </div>
   </div>
 </section>
-
-<script type="module" src="/src/scripts/initSplide.js" client:load></script>
+<script>
+  import { Splide } from "@splidejs/splide";
+  document.addEventListener("DOMContentLoaded", function () {
+    new Splide("#why-us-carousel", {
+      type: "loop",
+      drag: "free",
+      focus: "center",
+      perPage: 5,
+      breakpoints: {
+        1600: { perPage: 4 },
+        1200: { perPage: 3 },
+        920: { perPage: 2 },
+        640: { perPage: 1 },
+      },
+    }).mount();
+  });
+</script>
