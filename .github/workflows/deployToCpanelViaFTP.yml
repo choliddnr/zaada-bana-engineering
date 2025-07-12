@@ -25,6 +25,7 @@ jobs:
       - name: Inject environment variables
         run: |
           echo "PUBLIC_CHATBOT_API_URL=${{ secrets.CHATBOT_URL }}" >> .env
+          cat .env
 
       - name: Generate static site
         run: npm run build
